@@ -1,65 +1,32 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useEffect,useState } from 'react'
+import Discover from '../components/DiscoverItem'
 
 export default function Home() {
+  useEffect(() => {
+    console.log('hello world')
+  },[])
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>Pollin - discover</title>
         <link rel="icon" href="/favicon.ico" />
+  
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      
+      <div className="container mx-auto bg-gradient-to-r from-bgseccond to-bgseccond2 min-h-screen sm:w-3/4 w-screen my-6 p-4 rounded-1">
+        <div className="flex justify-start mb-3">
+            <h1 className="text-4xl"> Discover Poll</h1>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+          <p className="antialiased  text-opacity-80"> if you interested in question you can vote</p>
+        <div className="container text-purple-700 flex flex-wrap">
+          <Discover/>
+          <Discover/>
+          <Discover/>
+          <Discover/>
+        </div>
+      </div>
+     
+    </>
   )
 }
