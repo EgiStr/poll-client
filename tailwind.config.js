@@ -18,6 +18,7 @@ module.exports = {
         bgseccond:'#1f2937',
         bgseccond2:'#262a2b',
         bgseccond3:'#252f3f',
+        navbar:'#262a2b',
     }
 
   },

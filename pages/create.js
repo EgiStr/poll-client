@@ -1,9 +1,8 @@
-import React from 'react'
-
+import Form from '../components/CreateForm'
 const create = () => {
     return (
         <div>
-            create
+            <Form />
         </div>
     )
 }
