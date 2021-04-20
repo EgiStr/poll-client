@@ -23,10 +23,10 @@ const Navbar = () => {
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex-shrink-0 flex items-center">
                             <p className="block lg:hidden h-8 w-auto font-sans font-extrabold uppercase ml-4 leading-5 text-white my-2 ">
-                                PollIn
+                                PollIn                               
                             </p> 
                             <p className="hidden lg:block h-8 w-auto font-sans font-extrabold uppercase ml-4 leading-5 text-white my-2 ">
-                                PollIn
+                               PollIn
                             </p> 
                         </div>
                         <div className="hidden sm:block sm:ml-6">

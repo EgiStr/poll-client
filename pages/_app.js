@@ -1,5 +1,4 @@
 import '../styles/bootstrapgrid.css'
-import "react-datepicker/dist/react-datepicker.css";
 import 'tailwindcss/tailwind.css'
 
 import Layout from '../components/layout';

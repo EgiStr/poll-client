@@ -1,9 +1,9 @@
-import Form from '../components/CreateForm'
+import Form from '../components/form/CreateForm'
 const create = () => {
     return (
-        <div>
+        <>
             <Form />
-        </div>
+        </>
     )
 }
 
