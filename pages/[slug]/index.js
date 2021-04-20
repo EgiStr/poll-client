@@ -1,5 +1,5 @@
 import Detail from '../../components/detail/Detail'
-import Comments from '../../components/detail/Comment'
+import Comments from '../../components/detail/comment/Comment'
 
 const index = () => {
     return (
