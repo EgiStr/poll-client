@@ -1,5 +1,5 @@
 
-const ChiildComment = ({ id, content, timestamp ,replies }) => {
+const ChiildComment = ({ id, content, timestamp ,replies ,handleChange }) => {
     
     return (
         <>
@@ -11,7 +11,7 @@ const ChiildComment = ({ id, content, timestamp ,replies }) => {
                     <div className="block px-2 text-sm italic text-base-400">
                         {timestamp}
                     </div>
-                    <button className="block px-2 cursor-pointer text-sm italic text-base-400">
+                    <button value={id} onClick={e => handleChange(e) } name="parent" className="block px-2 cursor-pointer text-sm italic text-base-400">
                         Reply
                     </button>
                 </div>
@@ -21,6 +21,7 @@ const ChiildComment = ({ id, content, timestamp ,replies }) => {
                         return <ChiildComment 
                                     key={i}        
                                     content={item.content}
+                                    handleChange={handleChange}
                                     timestamp={item.timestamp}
                                     id={item.id}
                                     replies={item.replies} />

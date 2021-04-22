@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import ChildComment from './ChiildComment'
 
-const Rootcomment = ({content ,timestamp , replies}) => {
+const Rootcomment = ({ id ,content ,timestamp , replies , handleChange}) => {
     return (
         <>
             <div className="commet flex flex-col mt-4 pb-4 border-b border-gray-500">
@@ -12,7 +12,7 @@ const Rootcomment = ({content ,timestamp , replies}) => {
                     <div className="block px-2 text-sm italic text-base-400">
                         {timestamp}
                     </div>
-                    <button className="block px-2 cursor-pointer text-sm italic text-base-400">
+                    <button value={id} onClick={e => handleChange(e) } name="parent" className="block px-2 cursor-pointer text-sm italic text-base-400">
                         Reply
                     </button>
                 </div>
@@ -22,6 +22,7 @@ const Rootcomment = ({content ,timestamp , replies}) => {
                                     id={item.id}
                                     content={item.content}
                                     timestamp={item.timestamp}
+                                    handleChange={handleChange}
                                     replies={item.replies}
                                      />
                 })}
