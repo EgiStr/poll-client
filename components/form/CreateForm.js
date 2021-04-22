@@ -40,7 +40,7 @@ const CreateForm = () => {
                         {deadlineShow && <DataPicker/>}
                     </div>
                     <div className="flex">
-                        <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12">
+                        <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full ">
                             Create Poll
                         </button>
                     </div>
