@@ -7,7 +7,7 @@ const index = ({ data }) => {
     return (
         <>
 
-        <div className="container mx-auto my-20 bg-gradient-to-r from-bgseccond to-bgseccond2 relative sm:w-5/6 w-screen p-8 rounded">
+        <div className="container mx-auto mt-10 bg-gradient-to-r from-bgseccond to-bgseccond2 relative sm:w-5/6 w-screen p-8 rounded">
             <Detail 
                 id={id}
                 title={title}

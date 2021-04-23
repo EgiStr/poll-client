@@ -15,7 +15,6 @@ const comment = ({ comments, id, contenttype }) => {
             ...prev,
             [name]:value
         }))
-        console.log(state)
 
     }
     const handleSubmit = () => {
@@ -47,7 +46,7 @@ const comment = ({ comments, id, contenttype }) => {
                             return <Comments 
                                         key={i}
                                         id={item.id}
-                                        handleChange={handleChange}
+                                        handleChange={handleChange} 
                                         content={item.content}
                                         timestamp={item.timestamp}
                                         replies={item.replies}

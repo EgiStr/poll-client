@@ -11,8 +11,7 @@ const CreateForm = () => {
         deadline:null,
         private:false,
         result_private:false,
-        answerL:null,
-        answerR:null,
+ 
     })
     
     const [answerPlus,setAnswerPlus] = useState(1)
@@ -49,12 +48,18 @@ const CreateForm = () => {
                 data[key] = state[key]
             }
         }
-        data['choice'] = answer
-        axios.post('/api/create/',data)
-            .then(res => {
-                router.push(`${res.data.slug}`)
-            })
-            .catch(err => setError(JSON.parse(err.request.response).error))
+        if(answer.length >= 2){
+            data['choice'] = answer
+    
+            axios.post('/api/create/',data)
+                .then(res => {
+                    router.push(`${res.data.slug}`)
+                })
+                .catch(err => setError(JSON.parse(err.request.response).error))
+            
+        }else{
+            setError('answer required min 2 choice')
+        }
         
     }
 

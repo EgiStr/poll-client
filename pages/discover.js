@@ -1,9 +1,11 @@
 
 const discover = () => {
     return (
-        <div>
-            discover
-        </div>
+       <>
+          <div className="spinner">
+          </div>
+       </>
+         
     )
 }
 

@@ -3,11 +3,11 @@ const ChiildComment = ({ id, content, timestamp ,replies ,handleChange }) => {
     
     return (
         <>
-            <div className="reply ml-4 flex flex-col mt-2">
-                <div className="block px-2 text-lg text-base-300 ">
+            <div className="reply ml-4 flex flex-col pt-1 pl-1 border-l border-gray-500">
+                <div className="block px-2 text-lg text-base-100 font-thin  ">
                   {content}
                 </div>
-                <div className="flex">
+                <div className="flex pb-3">
                     <div className="block px-2 text-sm italic text-base-400">
                         {timestamp}
                     </div>

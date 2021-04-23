@@ -4,11 +4,11 @@ import ChildComment from './ChiildComment'
 const Rootcomment = ({ id ,content ,timestamp , replies , handleChange}) => {
     return (
         <>
-            <div className="commet flex flex-col mt-4 pb-4 border-b border-gray-500">
-                <div className="block px-2 text-lg text-base-300 ">
+            <div className="commet flex flex-col mt-3 pb-2 pl-2 border-gray-500 border-l ">
+                <div className="block px-2 text-lg text-base-100 font-thin  ">
                     {content}
                 </div>
-                <div className="flex">
+                <div className="flex pb-2">
                     <div className="block px-2 text-sm italic text-base-400">
                         {timestamp}
                     </div>
