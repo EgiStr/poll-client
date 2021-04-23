@@ -1,9 +1,15 @@
 import Char from '../../components/result/pie' ;
 import ProgressBar from '../../components/result/progressBar'
+
 import axios from '../../utils/axios'
 import Link from 'next/link'
+
+import { copyToClipboard } from '../../utils/copyClipbord'
+import { shareurl } from '../../utils/baseUrl'
+import { useRouter } from 'next/router'
 const result = ({ data, slug }) => {
-    const { title, desc, create_at, result_private, result, resultAll } = data
+    const router = useRouter()
+    const { title, desc, create_at, result, resultAll } = data
     const colorBg = [
           'rgb(255, 99, 132)',
           'rgb(54, 162, 235)',
@@ -23,7 +29,7 @@ const result = ({ data, slug }) => {
                     <div className="flex sm:justify-center mb-3">
                         <div className="flex flex-col">
                             <h1 className="text-2xl sm:text-4x1 mb-2">{title}</h1>
-                            <p className="antialiased text-opacity-80 text-base-400 italic sm:ml-8">Started About {create_at}</p>
+                            <p className="antialiased text-opacity-80 text-base-400 italic">Started About {create_at}</p>
                         </div>
                     </div>
                     <div className="desc text-base-500 text-lg italic sm:ml-7 my-3">
@@ -46,10 +52,9 @@ const result = ({ data, slug }) => {
                         <p className="mb-2 text-lg">Total Votes : {resultAll} vote</p>
                     </div>
                     <div className="flex flex-row sm:justify-between mt-2">
-                        <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r w-1/2">
-                            share
-                        </button>
-                        <Link href={`/${slug}`}>
+                            <button onClick={() => copyToClipboard(shareurl(router.asPath))} className="transition duration-300shado ease-in-out focus:outline-none focus:w-outlin bg-blue-300 hover:bg-blue-700 w-1/2 border sm:w-1/4 sm:min-h-full  border-blue-500 text-gray-800 font-bold py-2 px-4 inline-flex items-center justify-center">
+                                <span>Share</span>
+                            </button>                        <Link href={`/${slug}`}>
                             <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l w-1/2">
                                 Back to Vote
                             </button>
@@ -82,8 +87,6 @@ export async function getServerSideProps(context) {
      
       return {
         notFound: true,
-        fallback:false
-       
       }
     }
   }

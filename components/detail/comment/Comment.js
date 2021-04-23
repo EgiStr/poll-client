@@ -2,13 +2,21 @@ import Comments from './Rootcomment'
 
 import axios from '../../../utils/axios'
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
+import { GlobalContext } from '../../../store/contextApi'
+
+
+
 
 const comment = ({ comments, id, contenttype }) => {
+
+    const { dispatch } = useContext(GlobalContext)
     const [state,setState] = useState({
         content:'',
         parent:null,
     })
+
     const handleChange = e => {
         const { name, value } = e.target
         setState(prev => ({
@@ -27,7 +35,13 @@ const comment = ({ comments, id, contenttype }) => {
                 parent:Number(state.parent)
             }
             axios.post(`/comment/create/`,data)
-                .then(res => setState({content:'',parent:null}))
+                .then(res => {
+                    dispatch({
+                        type:'MESSAGE_SUCCESS',
+                        payload:"Comment Success Created"
+                    })
+                    setState({content:'',parent:null})
+                })
                 .catch(err => console.log(err.request))
         }
     }
@@ -37,7 +51,7 @@ const comment = ({ comments, id, contenttype }) => {
                 <p className="text-3xl ">Comments</p>
                 <div className="flex flex-col">
                     <div className="flex mt-2">
-                        <textarea name="content" onChange={e => handleChange(e)} className="bg-base-900 max-h-10 placeholder-gray-500 h-10 mt-2 transition duration-300 ease-in-out  rounded-r-none rounded-l p-2 w-3/4" placeholder="comment this question ..." />
+                        <textarea name="content" value={state.content} onChange={e => handleChange(e)} className="bg-base-900 max-h-10 placeholder-gray-500 h-10 mt-2 transition duration-300 ease-in-out  rounded-r-none rounded-l p-2 w-3/4" placeholder="comment this question ..." />
                         <button onClick={() => handleSubmit()} className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-sm h-10 mt-2">Comment</button>
                     </div>
                     {comments.length > 0 

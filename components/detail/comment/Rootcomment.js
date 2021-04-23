@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import ChildComment from './ChiildComment'
 
 const Rootcomment = ({ id ,content ,timestamp , replies , handleChange}) => {
+    const limit = 0
     return (
         <>
             <div className="commet flex flex-col mt-3 pb-2 pl-2 border-gray-500 border-l ">
@@ -17,7 +17,8 @@ const Rootcomment = ({ id ,content ,timestamp , replies , handleChange}) => {
                     </button>
                 </div>
                 {replies.map((item,i) => {
-                    return <ChildComment 
+                    return <ChildComment
+                                    limit={limit}              
                                     key={i}
                                     id={item.id}
                                     content={item.content}

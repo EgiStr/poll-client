@@ -3,6 +3,8 @@ import 'tailwindcss/tailwind.css'
 
 import { Router } from 'next/dist/client/router'
 
+import { GlobalProvider } from '../store/contextApi'
+
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -24,9 +26,11 @@ Router.events.on('routeChangeError',() => {
 
 function MyApp({ Component, pageProps }) {
   return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <GlobalProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GlobalProvider>
   )
 }
 

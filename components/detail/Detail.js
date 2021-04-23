@@ -48,7 +48,7 @@ const Detail = ({
             <div className="flex sm:justify-center">
                 <div className="flex flex-col">
                     <h1 className="text-2xl sm:text-4x1 mb-2">{title}</h1>
-                    <p className="antialiased text-opacity-80 text-base-400 italic text-xs sm:text-base ">Start about {create_at}</p>
+                    <p className="antialiased text-opacity-80 text-base-400 italic text-xs sm:text-base ">Started About {create_at}</p>
                 </div>
             </div>
             <div className="absolute right-2 sm:right-10 top-3">
