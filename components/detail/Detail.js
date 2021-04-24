@@ -1,11 +1,14 @@
-import { useState } from 'react'
-import { copyToClipboard } from '../../utils/copyClipbord'
-import { shareurl } from '../../utils/baseUrl'
+import { useState,useContext } from 'react'
+
 import axios from '../../utils/axios'
 import Link from 'next/link'
+
 import { useRouter } from 'next/router'
 import RadioButton from './RadioButton'
 import Dropdown from './Dropdown'
+import ShareButton from '../other/copyClipboard'
+
+import { GlobalContext } from '../../store/contextApi';
 
 const Detail = ({
     id,
@@ -18,33 +21,46 @@ const Detail = ({
     slug  ,
     choice 
 }) => {
+    const { dispatch } = useContext(GlobalContext)
     const router = useRouter()
     const [value, setValue] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState({error:false,respon:null})
-    
+
     
     const handleVote = async() => {
-
-        setLoading(true)
-        let form = new FormData()
-            form.append('question',id)
-            form.append('choice',Number(value))
-        
-        axios.post('/api/vote/',form)
-            .then(res => {
-                setLoading(false)
-                setError({error:true,respon:'Success Vote question ! ..'})
+        if(value){
+            setLoading(true)
+            let form = new FormData()
+                form.append('question',id)
+                form.append('choice',Number(value))
+            
+            axios.post('/api/vote/',form)
+                .then(res => {
+                    setLoading(false)
+                    dispatch({
+                        type:'MESSAGE_SUCCESS',
+                        payload:"voted , thank for voting"
+                    })
+                })
+                .catch(err => {
+                    const message = JSON.parse(err.request.response)
+                    setLoading(false)
+                    dispatch({
+                        type:'MESSAGE_SUCCESS',
+                        payload:message.error
+                    })
+                })
+        }else{
+            dispatch({
+                type:'MESSAGE_SUCCESS',
+                payload:"select you choice !"
             })
-            .catch(err => {
-                const message = JSON.parse(err.request.response)
-                setLoading(false)
-                setError({error:true,respon:message.error})
-            })
+        }
     }
     
     return (
         <>
+    
             <div className="flex sm:justify-center">
                 <div className="flex flex-col">
                     <h1 className="text-2xl sm:text-4x1 mb-2">{title}</h1>
@@ -52,7 +68,12 @@ const Detail = ({
                 </div>
             </div>
             <div className="absolute right-2 sm:right-10 top-3">
-                <Dropdown author={author} id={id} slug={slug} />
+                <Dropdown author={author} 
+                            id={slug} 
+                            title={title} 
+                            desc={desc} 
+                            deadline={deadline}
+                            slug={slug} />
             </div>
             <div className="desc text-base-500 font-thin text-lg italic sm:ml-7 my-3">
                 <blockquote>
@@ -68,11 +89,11 @@ const Detail = ({
             </div>
             {deadline &&
                         <div className="ml-2 sm:ml4">
-                            <p className="mb-4 text-base-500 text-lg italic">{deadline}</p>
-                        </div> }
-            {error.error &&
-                        <div className="ml-2 sm:ml4">
-                            <p className="mb-4 text-red-700 text-lg italic">{error.respon}</p>
+                            {deadline.substr(deadline.length - 3) === 'now' ? 
+                                <p className="mb-4 text-base-500 text-lg italic capitalize font-thin">Vote will end in {deadline}</p>
+                                :
+                                <p className="mb-4 text-base-500 text-lg italic capitalize font-thin">vote close on {deadline}</p>
+                            }
                         </div> }
             
             <div className="flex flex-col sm:flex-row sm:justify-between">
@@ -91,13 +112,11 @@ const Detail = ({
                 }
                 <div className="flex justify-center sm:flex-grow sm:inline-flex sm:justify-end">
                     <Link href={`/${slug}/result`}>
-                    <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-300 hover:bg-blue-700 w-1/2 sm:w-1/4 sm:min-h-full border-blue-500 text-gray-800 font-bold py-2 px-4 inline-flex justify-center">
-                        <span className="cursor-pointer">Result</span>
-                    </button>
+                        <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-300 hover:bg-blue-700 w-1/2 sm:w-1/4 sm:min-h-full border-blue-500 text-gray-800 font-bold py-2 px-4 inline-flex justify-center">
+                            <span className="cursor-pointer">Result</span>
+                        </button>
                     </Link>
-                    <button onClick={() => copyToClipboard(shareurl(router.asPath))} className="transition duration-300shado ease-in-out focus:outline-none focus:w-outlin bg-blue-300 hover:bg-blue-700 w-1/2 border sm:w-1/4 sm:min-h-full  border-blue-500 text-gray-800 font-bold py-2 px-4 inline-flex items-center justify-center">
-                        <span>Share</span>
-                    </button>
+                    <ShareButton url={router.asPath} /> 
                 </div>
             </div>
            

@@ -3,11 +3,12 @@ import ProgressBar from '../../components/result/progressBar'
 
 import axios from '../../utils/axios'
 import Link from 'next/link'
+import ShareButton from '../../components/other/copyClipboard'
 
-import { copyToClipboard } from '../../utils/copyClipbord'
-import { shareurl } from '../../utils/baseUrl'
 import { useRouter } from 'next/router'
+
 const result = ({ data, slug }) => {
+ 
     const router = useRouter()
     const { title, desc, create_at, result, resultAll } = data
     const colorBg = [
@@ -22,6 +23,7 @@ const result = ({ data, slug }) => {
           'rgb(228, 150, 72)',
           'rgb(78, 150, 72)'
     ]
+   
     return (
         <>
             <div className="container mx-auto my-20 bg-gradient-to-r from-bgseccond to-bgseccond2 relative sm:w-5/6 w-screen p-8 rounded">
@@ -38,13 +40,13 @@ const result = ({ data, slug }) => {
                         </blockquote> 
                     </div>
                     <div className="flex flex-col md:flex-row max-h-1/2 my-auto">
-                        <div className="flex flex-col md:w-4/5 w-full py-10">
+                        <div className="flex flex-col md:w-4/5 w-full py-10  ">
                             {result.map((item,i) => {
                                 let percent = item.result == 0 ? 0 :  item.result / resultAll 
                                 return <ProgressBar key={i} name={item.text} percent={`${((percent * 100) + '').substring(0,5) }%`} color={colorBg[i]} />
                             })}
                         </div>
-                        <div className="char p-4 inline-flex justify-center m-auto justify-items-center">
+                        <div className="char p-4 inline-flex justify-center md:m-auto md:justify-items-center">
                             <Char data={{result,resultAll,title}} />
                         </div>
                     </div>
@@ -52,9 +54,8 @@ const result = ({ data, slug }) => {
                         <p className="mb-2 text-lg">Total Votes : {resultAll} vote</p>
                     </div>
                     <div className="flex flex-row sm:justify-between mt-2">
-                            <button onClick={() => copyToClipboard(shareurl(router.asPath))} className="transition duration-300shado ease-in-out focus:outline-none focus:w-outlin bg-blue-300 hover:bg-blue-700 w-1/2 border sm:w-1/4 sm:min-h-full  border-blue-500 text-gray-800 font-bold py-2 px-4 inline-flex items-center justify-center">
-                                <span>Share</span>
-                            </button>                        <Link href={`/${slug}`}>
+                        <ShareButton url={router.asPath} /> 
+                        <Link href={`/${slug}`}>
                             <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l w-1/2">
                                 Back to Vote
                             </button>
