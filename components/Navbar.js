@@ -33,8 +33,6 @@ const Navbar = () => {
                             <div className="flex space-x-4 ml-6 ">    
                                 <Link href="/" ><p className="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</p></Link>
                                 <Link href="/create" ><p className="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Create Poll</p></Link>
-                                <Link href="/discover" ><p className="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Discover</p></Link>
-                
                             </div>
                         </div>
                         
@@ -46,7 +44,6 @@ const Navbar = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1">
                     <Link href="/" ><p className="text-gray-300 leading-5 cursor-pointer hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</p></Link>
                     <Link href="/create" ><p className="text-gray-300 leading-5 cursor-pointer hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Create Poll</p></Link>
-                    <Link href="/discover" ><p className="text-gray-300 leading-5 cursor-pointer hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Discover</p></Link>           
                 </div>
             </div>
          </nav>

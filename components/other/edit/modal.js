@@ -9,27 +9,31 @@ const modal = ({
     title,
     desc,
     id,
-    deadline }) => {
+    deadline,
+    result,
+    list,}) => {
 
     const onEsc = useCallback(() => setOpen(false),[])
     UseEsc(onEsc)
 
     return (
        
-        <div className={`fixed z-10 inset-0 overflow-y-auto ${!open && 'hidden'}`} aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className={`fixed z-10 inset-0 overflow-hidden ${!open && 'hidden'}`} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div className="min-h-screen sm:pt-4 sm:px-4 pb-20 text-center align-middle block sm:mt-0 p-0 mt-72">
                 {/* opacity */}
                 <div onClick={() => setOpen(prev => !prev )} className="fixed inset-0 bg-black bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-                <span className=" hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div className="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <span className="h-screen sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div className="inline-block rounded-lg text-left shadow-xl transform transition-all sm:my-8 align-middle w-screen sm:max-w-lg sm:w-full">
                 {/* content modal */}
-                <div className=" bg-gradient-to-r from-bgseccond to-bgseccond2 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 min-w-max">
+                <div className=" bg-gradient-to-r from-bgseccond to-bgseccond2 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 ">
                     <RootContent 
                         title={title} 
                         type={type}
                         desc={desc}
                         deadline={deadline}
-                        id={id} />
+                        id={id} 
+                        list={list}
+                        result={result} />
                 </div>            
             </div>
         </div>

@@ -1,6 +1,6 @@
-import '../styles/bootstrapgrid.css'
-import 'tailwindcss/tailwind.css'
 
+import '../styles/globals.css'
+import '../styles/styleGlobal.css'
 import { Router } from 'next/dist/client/router'
 
 import { GlobalProvider } from '../store/contextApi'

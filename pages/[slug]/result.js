@@ -4,12 +4,29 @@ import ProgressBar from '../../components/result/progressBar'
 import axios from '../../utils/axios'
 import Link from 'next/link'
 import ShareButton from '../../components/other/copyClipboard'
-
+import Container from '../../components/other/ContainerLayout'
 import { useRouter } from 'next/router'
 
-const result = ({ data, slug }) => {
- 
+const result = ({ data, slug, page }) => {
     const router = useRouter()
+    if(page){
+        return (
+            <Container>
+                <div className="container flex flex-col ">
+                    <p className="text-2xl font-mono inline-flex justify-center">
+                        Sorry But This question result Private
+                    </p>
+                    <p onClick={() => router.push(`/${slug}`)} className="text-2xl font-mono inline-flex justify-center cursor-pointer hover:underline text-basefont-500">
+                            Go back to Vote
+                    </p>
+
+                    <p onClick={() => router.push(`/`)} className="text-2xl font-mono inline-flex justify-center cursor-pointer hover:underline text-basefont-500">
+                            Discover Question
+                    </p>
+                    
+                </div>
+            </Container>) 
+    }
     const { title, desc, create_at, result, resultAll } = data
     const colorBg = [
           'rgb(255, 99, 132)',
@@ -25,8 +42,16 @@ const result = ({ data, slug }) => {
     ]
    
     return (
-        <>
-            <div className="container mx-auto my-20 bg-gradient-to-r from-bgseccond to-bgseccond2 relative sm:w-5/6 w-screen p-8 rounded">
+        <>  
+            <Head>
+                    <title>result {title} - Pollin</title>
+                    <link rel="icon" href="/favicon.ico" />  
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    <meta name="description" content={`result question ${title} in pollin `} ></meta>
+                    <meta name="keywords" content={`poll free, website poll free,create poll free,${title}`} />
+            </Head>
+            <Container>
                 <div className="flex flex-col">
                     <div className="flex sm:justify-center mb-3">
                         <div className="flex flex-col">
@@ -62,7 +87,7 @@ const result = ({ data, slug }) => {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </Container>
         </>
     )
 }
@@ -85,10 +110,17 @@ export async function getServerSideProps(context) {
         }, // will be passed to the page component as props
       }
     } catch (error) {
-     
-      return {
-        notFound: true,
-      }
+        if(error.response.status){
+        return {
+            props:{
+                page:true,
+                slug:query.slug
+            },
+        }       
+        }
+        return {
+            notFound: true,
+        }
     }
   }
 

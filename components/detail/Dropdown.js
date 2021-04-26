@@ -6,7 +6,7 @@ import axios from '../../utils/axios'
 import { useRouter } from 'next/router'
 import { GlobalContext } from '../../store/contextApi'
 
-const Dropdown = ({ title, desc ,deadline ,id }) => {
+const Dropdown = ({ title, desc ,deadline ,id ,list ,result}) => {
     const router = useRouter()
     const { dispatch } = useContext(GlobalContext)
     
@@ -44,14 +44,17 @@ const Dropdown = ({ title, desc ,deadline ,id }) => {
                 deadline={deadline}
                 open={open}
                 setOpen={setOpen} 
-                type={type} />
+                type={type}
+                list={list}
+                result={result}
+                />
 
             <div className="dropdown inline-block relative">
             <img width={22} height={22} onClick={() => setShow(prev => !prev )} className="cursor-pointer" loading="eager" src="https://img.icons8.com/color/22/000000/more.png"/>
                 <ul className={`dropdown-menu absolute sm:min-w-max right-2 sm:right-0 bg-bgseccond text-white pt-1 shadow-sm ${show ? 'block' : 'hidden'}`}>
-                    <li onClick={() => {setOpen(true) ; setType(1)}} className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black"><p  className="rounded-t py-2 px-4 block whitespace-no-wrap" >Edit </p></li>
-                    <li onClick={() => {setOpen(true) ; setType(2)}}className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black"><p  className=" py-2 px-4 block whitespace-no-wrap" href="#">Update Deadline</p></li>
-                    <li onClick={() => handleDelete()} className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black"><p  className=" py-2 px-4 block whitespace-no-wrap" href="#">Delete</p></li>
+                    <li onClick={() => {setOpen(true) ; setType(1)}} className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black cursor-pointer"><p  className="rounded-t py-2 px-4 block whitespace-no-wrap" >Edit</p></li>
+                    <li onClick={() => {setOpen(true) ; setType(2)}}className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black cursor-pointer "><p  className=" py-2 px-4 block whitespace-no-wrap" >Update Deadline</p></li>
+                    <li onClick={() => handleDelete()} className="transition duration-300 ease-in-out hover:bg-basefont-300 hover:text-black cursor-pointer"><p  className=" py-2 px-4 block whitespace-no-wrap" >Delete</p></li>
                 </ul>
             </div>
         </>

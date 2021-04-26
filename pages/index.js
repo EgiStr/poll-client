@@ -1,22 +1,26 @@
 import Head from 'next/head'
 import axios from '../utils/axios'
 import Discover from '../components/DiscoverItem'
-
+import Container from '../components/other/ContainerLayout'
 export default function Home({ data }) {
   
   return (
     <>
       <Head>
-        <title>Pollin - discover</title>
+        <title>discover interested question - Pollin</title>
         <link rel="icon" href="/favicon.ico" />  
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="vote interested in question , or make question for free and anytime"></meta>
+        <meta name="keywords" content="poll free, website poll free,create poll" />
       </Head>
       
-      <div className="container mx-auto bg-gradient-to-r from-bgseccond to-bgseccond2 min-h-screen sm:w-3/4 w-screen p-4 rounded-1">
-        <div className="flex flex-col mb-3">
-            <h1 className="text-4xl mb-2"> Discover Poll</h1>
-            <p className="antialiased text-opacity-80 text-base-200 ml-3"> if you interested in question you can vote</p>
+      <Container>
+        <div className="flex flex-col mb-3 md:ml-10">
+            <h1 className="text-4xl mb-2 font-serif"> Discover Poll</h1>
+            <p className="antialiased text-opacity-70 text-base-200 font-serif ml-3 "> if you interested in question you can vote</p>
         </div>
-        <div className="container flex flex-wrap">
+        <div className="container flex flex-wrap justify-evenly">
         
           {data.results.length > 0 && data.results.map((item,i) => {
             return <Discover 
@@ -28,7 +32,7 @@ export default function Home({ data }) {
           })}
           
         </div>
-      </div>
+      </Container>
      
     </>
   )

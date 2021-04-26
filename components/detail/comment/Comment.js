@@ -2,7 +2,7 @@ import Comments from './Rootcomment'
 
 import axios from '../../../utils/axios'
 
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef, useEffect } from 'react'
 
 import { GlobalContext } from '../../../store/contextApi'
 
@@ -45,13 +45,24 @@ const comment = ({ comments, id, contenttype }) => {
                 .catch(err => console.log(err.request))
         }
     }
+    const textinput = useRef(null)
+    
+    useEffect(() => {
+        if(state.parent) textinput.current.focus()
+    },[state.parent])
+
+
     return (
         <>
             <div className="flex flex-col">
                 <p className="text-3xl ">Comments</p>
                 <div className="flex flex-col">
+                    {state.parent && 
+                                <div onClick={ () => setState(prev=> ({...prev,parent:null}))} className="h-4 text-base-600 font-mono cursor-pointer capitalize mt-2 ml-6">
+                                    your replies comment , Click if want cancel
+                                </div>}
                     <div className="flex mt-2">
-                        <textarea name="content" value={state.content} onChange={e => handleChange(e)} className="bg-base-900 max-h-10 placeholder-gray-500 h-10 mt-2 transition duration-300 ease-in-out  rounded-r-none rounded-l p-2 w-3/4" placeholder="comment this question ..." />
+                        <textarea ref={textinput} name="content" value={state.content} onChange={e => handleChange(e)} className="bg-base-900 max-h-10 resize-none  focus:border-transparent placeholder-gray-500 h-10 mt-2 transition duration-300 ease-in-out rounded-r-none rounded-l p-2 w-3/4" placeholder="comment this question ..." />
                         <button onClick={() => handleSubmit()} className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-sm h-10 mt-2">Comment</button>
                     </div>
                     {comments.length > 0 

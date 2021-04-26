@@ -19,21 +19,25 @@ const Detail = ({
     deadlineAnswer ,
     create_at ,
     slug  ,
-    choice 
+    choice ,
+    auth,
+    result,
+    list
 }) => {
+
     const { dispatch } = useContext(GlobalContext)
     const router = useRouter()
     const [value, setValue] = useState(null)
     const [loading, setLoading] = useState(false)
 
     
-    const handleVote = async() => {
+    const handleVote = () => {
         if(value){
             setLoading(true)
             let form = new FormData()
                 form.append('question',id)
                 form.append('choice',Number(value))
-            
+       
             axios.post('/api/vote/',form)
                 .then(res => {
                     setLoading(false)
@@ -67,25 +71,34 @@ const Detail = ({
                     <p className="antialiased text-opacity-80 text-base-400 italic text-xs sm:text-base ">Started About {create_at}</p>
                 </div>
             </div>
-            <div className="absolute right-2 sm:right-10 top-3">
-                <Dropdown author={author} 
-                            id={slug} 
-                            title={title} 
-                            desc={desc} 
-                            deadline={deadline}
-                            slug={slug} />
-            </div>
+            
+            {auth === author && (
+                <div className="absolute right-10 sm:right-12 top-5">
+                    <Dropdown author={author} 
+                                id={slug} 
+                                title={title} 
+                                desc={desc} 
+                                deadline={deadline}
+                                slug={slug}
+                                result={result}
+                                list={list}
+                               />
+                </div>
+            )}
+
             <div className="desc text-base-500 font-thin text-lg italic sm:ml-7 my-3">
                 <blockquote>
                     " {desc}
                 </blockquote> 
             </div>
          
-            <div className="ml-2 sm:ml4">
-                <p className=" text-2xl capitalize font-thin mb-4">Vote you answer</p>
-                {choice.map((item,i) => {
-                    return <RadioButton key={i} name={item.text} setValue={setValue} value={item.id} />
-                })}
+            <div className="ml-2 sm:ml4 mb-4">
+                <p className="text-2xl capitalize font-thin mb-4">Vote you answer</p>
+                <div className="sm:ml-6 ml-2">
+                    {choice.map((item,i) => {
+                        return <RadioButton key={i} name={item.text} setValue={setValue} value={item.id} />
+                    })}
+                </div>
             </div>
             {deadline &&
                         <div className="ml-2 sm:ml4">
@@ -98,16 +111,12 @@ const Detail = ({
             
             <div className="flex flex-col sm:flex-row sm:justify-between">
                    {deadlineAnswer ? 
-                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 cursor-not-allowed bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12">
-                        {loading ? 
-                        <div className="spinner">
-                        </div> : 'VOTE'}
+                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 min-h-10 cursor-not-allowed bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12">
+                        {loading ? <div className="spinner"></div> : 'VOTE'}
                     </button>
                 :
-                    <button onClick={() => handleVote()} className={`${loading && 'cursor-not-allowed'} transition relative duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12`}>
-                        {loading ? 
-                        <div className="spinner">
-                        </div> : 'VOTE'}
+                    <button disabled={loading} onClick={() => handleVote()} className={`${loading && 'cursor-not-allowed'} min-h-20 transition relative duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12`}>
+                        {loading ? <div className="spinner"></div> : 'VOTE'}
                     </button>
                 }
                 <div className="flex justify-center sm:flex-grow sm:inline-flex sm:justify-end">
