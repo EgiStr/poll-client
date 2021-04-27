@@ -1,19 +1,32 @@
-import Char from '../../components/result/pie' ;
-import ProgressBar from '../../components/result/progressBar'
+import Head from 'next/head'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import axios from '../../utils/axios'
-import Link from 'next/link'
+
+import Char from '../../components/result/pie' ;
+import ProgressBar from '../../components/result/progressBar'
 import ShareButton from '../../components/other/copyClipboard'
 import Container from '../../components/other/ContainerLayout'
-import { useRouter } from 'next/router'
 
 const result = ({ data, slug, page }) => {
     const router = useRouter()
     if(page){
-        return (
+        return ( 
+            <>
+             <Head>
+                    <title>result Private- Pollin</title>
+                    <link rel="icon" href="/icon.png" />  
+                    <link rel="apple-touch-icon" href="/icon.png"></link>
+                    <link rel="manifest" href="/manifest.json" />
+                    <meta name="theme-color" content="#1f2937"></meta>
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+                    <meta name="description" content={`result question Private in pollin `} ></meta>
+            </Head>
             <Container>
                 <div className="container flex flex-col ">
-                    <p className="text-2xl font-mono inline-flex justify-center">
+                    <p className="md:text-2xl font-mono inline-flex justify-center">
                         Sorry But This question result Private
                     </p>
                     <p onClick={() => router.push(`/${slug}`)} className="text-2xl font-mono inline-flex justify-center cursor-pointer hover:underline text-basefont-500">
@@ -25,7 +38,9 @@ const result = ({ data, slug, page }) => {
                     </p>
                     
                 </div>
-            </Container>) 
+            </Container>
+            </>
+            ) 
     }
     const { title, desc, create_at, result, resultAll } = data
     const colorBg = [
@@ -45,7 +60,10 @@ const result = ({ data, slug, page }) => {
         <>  
             <Head>
                     <title>result {title} - Pollin</title>
-                    <link rel="icon" href="/favicon.ico" />  
+                    <link rel="icon" href="/icon.png" />  
+                    <link rel="apple-touch-icon" href="/icon.png"></link>
+                    <link rel="manifest" href="/manifest.json" />
+                    <meta name="theme-color" content="#1f2937"></meta>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                     <meta name="description" content={`result question ${title} in pollin `} ></meta>

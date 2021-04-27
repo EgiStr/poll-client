@@ -93,13 +93,13 @@ const CreateForm = () => {
                     <div className="field-group mb-4 flex flex-col">
                         <span className="field-labe">settings</span>                            
                         <div className="flex mt-4">
-                            <input id='private' onChange={e => handleCheckBox(e)}  type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="private" className="ml-2 text-base-400">Private ( vote only via link not public (optional) )</label>
+                            <input id='private' onChange={e => handleCheckBox(e)}  type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="private" className="ml-2 text-xs sm:text-base text-base-400">Private ( vote only via link not public (optional) )</label>
                         </div>
                         <div className="flex mt-4">
-                            <input id='result_private' onChange={e => handleCheckBox(e)} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="result_private" className="ml-2 text-base-400">Private result ( only you can see result (optional) )</label>
+                            <input id='result_private' onChange={e => handleCheckBox(e)} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="result_private" className="ml-2 text-xs sm:text-base text-base-400">Private result ( only you can see result (optional) )</label>
                         </div>
                         <div className="flex mt-4">
-                            <input id='deadline'onChange={e => setDeadlineShow(e.target.checked)} checked={deadlineShow} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="deadline" className="ml-2 text-base-400">Deadline ( Vote will close, (optional) )</label>
+                            <input id='deadline'onChange={e => setDeadlineShow(e.target.checked)} checked={deadlineShow} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="deadline" className="ml-2 text-xs sm:text-base text-base-400">Deadline ( Vote will close, (optional) )</label>
                         </div>
                         {deadlineShow && <DataPicker handleChange={handleDeadline} />}
                     </div>

@@ -111,11 +111,11 @@ const Detail = ({
             
             <div className="flex flex-col sm:flex-row sm:justify-between">
                    {deadlineAnswer ? 
-                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 min-h-10 cursor-not-allowed bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12">
+                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 min-h-10 cursor-not-allowed bg-basefont-800 hover:bg-blue-800 text-white font-bold py-2 px-4  rounded w-full sm:w-3/12">
                         {loading ? <div className="spinner"></div> : 'VOTE'}
                     </button>
                 :
-                    <button disabled={loading} onClick={() => handleVote()} className={`${loading && 'cursor-not-allowed'} min-h-20 transition relative duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12`}>
+                    <button disabled={loading} onClick={() => handleVote()} className={`${loading && 'cursor-not-allowed'} min-h-20 transition relative duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-basefont-800 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full sm:w-3/12`}>
                         {loading ? <div className="spinner"></div> : 'VOTE'}
                     </button>
                 }

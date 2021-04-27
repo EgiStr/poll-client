@@ -11,10 +11,13 @@ const index = ({ data, auth }) => {
     return (
         <>
          <Head>
-                <title>Vote {title} - Pollin</title>
-                <link rel="icon" href="/favicon.ico" />  
+                <title>{title} - Pollin</title>
+                <link rel="icon" href="/icon.png" />  
+                <link rel="apple-touch-icon" href="/icon.png"></link>  
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#1f2937"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta name="description" content={`vote question ${title} `} ></meta>
                 <meta name="keywords" content={`poll free, website poll free,create poll free,${title}`} />
           </Head>

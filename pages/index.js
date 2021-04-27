@@ -8,16 +8,19 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>discover interested question - Pollin</title>
-        <link rel="icon" href="/favicon.ico" />  
+        <link rel="icon" href="/icon.png" />  
+        <link rel="apple-touch-icon" href="/icon.png"></link>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1f2937"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="description" content="vote interested in question , or make question for free and anytime"></meta>
         <meta name="keywords" content="poll free, website poll free,create poll" />
       </Head>
       
       <Container>
         <div className="flex flex-col mb-3 md:ml-10">
-            <h1 className="text-4xl mb-2 font-serif"> Discover Poll</h1>
+            <h1 className="sm:text-4xl mb-2 font-serif capitalize text-2xl"> Discover Poll</h1>
             <p className="antialiased text-opacity-70 text-base-200 font-serif ml-3 "> if you interested in question you can vote</p>
         </div>
         <div className="container flex flex-wrap justify-evenly">
