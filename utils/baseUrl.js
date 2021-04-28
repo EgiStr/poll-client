@@ -1,4 +1,4 @@
 export const shareurl = path => {
-    const baseUrl = 'http://localhost:3000'
+    const baseUrl = 'https://pollin1.netlify.app'
     return baseUrl+path
 }

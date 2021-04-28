@@ -118,7 +118,6 @@ export async function getServerSideProps(context) {
       if(!res.data){
         return {
           notFound: true,
-          fallback:false
         }
       }
       return {
