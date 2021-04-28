@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Form from '../components/form/CreateForm'
 import Container from '../components/other/ContainerLayout'
+
 const create = () => {
     return (
         <>

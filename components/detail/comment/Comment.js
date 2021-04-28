@@ -12,6 +12,7 @@ import { GlobalContext } from '../../../store/contextApi'
 const comment = ({ comments, id, contenttype }) => {
 
     const { dispatch } = useContext(GlobalContext)
+    const [loading, setLoading] = useState(false)
     const [state,setState] = useState({
         content:'',
         parent:null,
@@ -26,6 +27,7 @@ const comment = ({ comments, id, contenttype }) => {
 
     }
     const handleSubmit = () => {
+        setLoading(true)
         if(state.content !== ''){
             
             const data = {
@@ -36,13 +38,14 @@ const comment = ({ comments, id, contenttype }) => {
             }
             axios.post(`/comment/create/`,data)
                 .then(res => {
+                    setLoading(false)
                     dispatch({
                         type:'MESSAGE_SUCCESS',
                         payload:"Comment Success Created"
                     })
                     setState({content:'',parent:null})
                 })
-                .catch(err => console.log(err.request))
+                .catch(err => setLoading(false))
         }
     }
     const textinput = useRef(null)
@@ -63,7 +66,7 @@ const comment = ({ comments, id, contenttype }) => {
                                 </div>}
                     <div className="flex mt-2">
                         <textarea ref={textinput} name="content" value={state.content} onChange={e => handleChange(e)} className="bg-base-900 max-h-10 resize-none  focus:border-transparent placeholder-gray-500 h-10 mt-2 transition duration-300 ease-in-out rounded-r-none rounded-l p-2 w-3/4" placeholder="comment this question ..." />
-                        <button onClick={() => handleSubmit()} className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-basefont-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-sm h-10 mt-2">Comment</button>
+                        <button disabled={loading} onClick={() => handleSubmit()} className={`${loading && 'cursor-not-allowed'} relative transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-basefont-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-sm h-10 mt-2`}>{loading ? <div className="spinner"></div> : 'Comment'}</button>
                     </div>
                     {comments.length > 0 
                     ? 

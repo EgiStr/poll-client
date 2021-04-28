@@ -1,4 +1,6 @@
 
+
+/* loading  */
  @keyframes spinner {
     to {transform: rotate(360deg);}
   }
@@ -49,6 +51,7 @@
   }
   
    body{
+     overflow-x: hidden;
      background-color: #121415;
      color:white;
    }

@@ -23,6 +23,7 @@ const CreateForm = () => {
     })
     
     const [answerPlus,setAnswerPlus] = useState(1)
+    const [loading ,setLoading] = useState(false)
     const [deadlineShow,setDeadlineShow] = useState(false)
     
     const handleChange = e => {
@@ -44,6 +45,7 @@ const CreateForm = () => {
     
 
     const handleSubmit = () => {
+        setLoading(true)
         if(!deadlineShow) setState(prev => ({...prev,deadline:null}))
         let answer = []
         let data = {}
@@ -60,12 +62,14 @@ const CreateForm = () => {
     
             axios.post('/api/create/',data)
                 .then(res => {
+                    setLoading(false)
                     router.push(`${res.data.slug}`)
                 })
                 
-                .catch(err => dispatch({ type:'MESSAGE_SUCCESS', payload:JSON.parse(err.request.response).error}) )
+                .catch(err => {dispatch({ type:'MESSAGE_SUCCESS', payload:JSON.parse(err.request.response).error});  setLoading(false)} )
             
         }else{
+            setLoading(false)
             dispatch({ type:'MESSAGE_SUCCESS', payload:'answer required min 2 choice'})
         }
         
@@ -105,8 +109,8 @@ const CreateForm = () => {
                     </div>
                     
                     <div className="flex mt-2">
-                        <button onClick={() => handleSubmit()} className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full ">
-                            Create Poll
+                        <button disabled={loading} onClick={() => handleSubmit()} className={`${loading && 'cursor-not-allowed'} relative transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full`} >
+                            {loading ? <div className="spinner"></div> : 'Create Poll'}
                         </button>
                     </div>
                 </div>
