@@ -15,7 +15,7 @@ const index = ({ data, auth }) => {
                 <link rel="icon" href="/icon.png" />  
                 <link rel="apple-touch-icon" href="/icon.png"></link>  
                 <link rel="manifest" href="/manifest.json" />
-                <meta name="theme-color" content="#1f2937"></meta>
+                <meta name="theme-color" content="black"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta name="description" content={`vote question ${title} `} ></meta>

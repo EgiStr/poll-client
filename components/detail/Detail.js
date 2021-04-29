@@ -125,7 +125,7 @@ const Detail = ({
                             <span className="cursor-pointer">Result</span>
                         </button>
                     </Link>
-                    <ShareButton url={router.asPath} /> 
+                    <ShareButton url={router.asPath} title={title} /> 
                 </div>
             </div>
            

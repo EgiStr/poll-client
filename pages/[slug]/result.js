@@ -63,7 +63,7 @@ const result = ({ data, slug, page }) => {
                     <link rel="icon" href="/icon.png" />  
                     <link rel="apple-touch-icon" href="/icon.png"></link>
                     <link rel="manifest" href="/manifest.json" />
-                    <meta name="theme-color" content="#1f2937"></meta>
+                    <meta name="theme-color" content="black"></meta>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                     <meta name="description" content={`result question ${title} in pollin `} ></meta>
@@ -97,7 +97,7 @@ const result = ({ data, slug, page }) => {
                         <p className="mb-2 text-lg">Total Votes : {resultAll} vote</p>
                     </div>
                     <div className="flex flex-row sm:justify-between mt-2">
-                        <ShareButton url={router.asPath} /> 
+                        <ShareButton url={router.asPath} title={title} /> 
                         <Link href={`/${slug}`}>
                             <button className="transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-basefont-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l w-1/2">
                                 Back to Vote
