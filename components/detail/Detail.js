@@ -24,7 +24,6 @@ const Detail = ({
     result,
     list
 }) => {
-
     const { dispatch } = useContext(GlobalContext)
     const router = useRouter()
     const [value, setValue] = useState(null)

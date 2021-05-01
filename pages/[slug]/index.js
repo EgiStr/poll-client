@@ -5,9 +5,8 @@ import axios from '../../utils/axios'
 
 import Container from '../../components/other/ContainerLayout'
 
-const index = ({ data, auth }) => {
-   
-    const { id, author, desc, title , deadline ,deadlineAnswer ,create_at ,slug  ,contenttype ,choice ,comments } = data
+const index = ({ data }) => {
+    const { id, author, desc, title , deadline ,deadlineAnswer ,create_at ,slug  ,contenttype ,choice ,comments, auth } = data
     return (
         <>
          <Head>
@@ -55,7 +54,6 @@ export async function getServerSideProps(context) {
     
     try {
       const res = await axios.get(`api/${query.slug}`)
-      const auth = await axios.get(`api/auth/`)
       
       if(!res.data){
         return {
@@ -64,7 +62,6 @@ export async function getServerSideProps(context) {
       }
       return {
         props: {
-          auth:auth.data.author,
           data:res.data
         }, // will be passed to the page component as props
       }
