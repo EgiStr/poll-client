@@ -4,15 +4,14 @@ import axios from '../../utils/axios'
 import Link from 'next/link'
 
 import { useRouter } from 'next/router'
+
 import RadioButton from './RadioButton'
-import Dropdown from './Dropdown'
 import ShareButton from '../other/copyClipboard'
 
 import { GlobalContext } from '../../store/contextApi';
 
 const Detail = ({
     id,
-    author,
     desc, 
     title , 
     deadline ,
@@ -20,9 +19,6 @@ const Detail = ({
     create_at ,
     slug  ,
     choice ,
-    auth,
-    result,
-    list
 }) => {
     const { dispatch } = useContext(GlobalContext)
     const router = useRouter()
@@ -71,19 +67,7 @@ const Detail = ({
                 </div>
             </div>
             
-            {auth === author && (
-                <div className="absolute right-10 sm:right-12 top-5">
-                    <Dropdown author={author} 
-                                id={slug} 
-                                title={title} 
-                                desc={desc} 
-                                deadline={deadline}
-                                slug={slug}
-                                result={result}
-                                list={list}
-                               />
-                </div>
-            )}
+          
 
             <div className="desc text-base-500 font-thin text-lg italic sm:ml-7 my-3">
                 <blockquote>
@@ -110,7 +94,7 @@ const Detail = ({
             
             <div className="flex flex-col sm:flex-row sm:justify-between">
                    {deadlineAnswer ? 
-                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 min-h-10 cursor-not-allowed bg-basefont-800 hover:bg-blue-800 text-white font-bold py-2 px-4  rounded w-full sm:w-3/12">
+                    <button disabled className="transition relative duration-300 ease-in-out opacity-40 min-h-20 cursor-not-allowed bg-basefont-800 hover:bg-blue-800 text-white font-bold py-2 px-4  rounded w-full sm:w-3/12">
                         {loading ? <div className="spinner"></div> : 'VOTE'}
                     </button>
                 :

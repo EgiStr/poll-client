@@ -100,16 +100,13 @@ const CreateForm = () => {
                             <input id='private' onChange={e => handleCheckBox(e)}  type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="private" className="ml-2 text-xs sm:text-base text-base-400">Private ( vote only via link not public (optional) )</label>
                         </div>
                         <div className="flex mt-4">
-                            <input id='result_private' onChange={e => handleCheckBox(e)} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="result_private" className="ml-2 text-xs sm:text-base text-base-400">Private result ( only you can see result (optional) )</label>
-                        </div>
-                        <div className="flex mt-4">
                             <input id='deadline'onChange={e => setDeadlineShow(e.target.checked)} checked={deadlineShow} type="checkbox" className="form-checkbox h-5 w-5 text-base-700" /><label htmlFor="deadline" className="ml-2 text-xs sm:text-base text-base-400">Deadline ( Vote will close, (optional) )</label>
                         </div>
                         {deadlineShow && <DataPicker handleChange={handleDeadline} />}
                     </div>
                     
                     <div className="flex mt-2">
-                        <button disabled={loading} onClick={() => handleSubmit()} className={`${loading && 'cursor-not-allowed'} relative transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full`} >
+                        <button disabled={loading} onClick={() => handleSubmit()} className={`${loading && 'cursor-not-allowed'} relative min-h-4 transition duration-300 ease-in-out focus:outline-none focus:shadow-outlin bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded w-full`} >
                             {loading ? <div className="spinner"></div> : 'Create Poll'}
                         </button>
                     </div>
